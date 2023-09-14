@@ -1,0 +1,20 @@
+.author-detail {
+  display: flex;
+  flex-direction: row;
+  h4 {
+    margin: 0px;
+  }
+  .author-avtar {
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    margin-right: 16px;
+  }
+  .author-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    .module-count {
+      margin-bottom: 8px;
+    }
+  }
+}

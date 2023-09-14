@@ -1,0 +1,15 @@
+.track-card {
+  margin: 16px;
+  border-radius: 15px;
+  min-width: 250px;
+  max-width: 300px;
+  overflow: hidden;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  img {
+    height: 150px;
+    width: 100%;
+  }
+  .track-detail-wraper {
+    padding: 0px 16px 16px;
+  }
+}
