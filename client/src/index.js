@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client';
-import React from 'react';
+import React, { useState, useTransition } from 'react';
 import {
   ApolloProvider,
   ApolloClient,
@@ -8,6 +8,7 @@ import {
 } from '@apollo/client';
 import { environment } from '../environment';
 import Track from './pages/tracks/tracks';
+import TrackCardDetail from './pages/tracks/track-card-detail/track-card.detail';
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -17,30 +18,31 @@ const client = new ApolloClient({
 const root = createRoot(document.getElementById('app'));
 root.render(
   <ApolloProvider client={client}>
-    {/* <button onClick={() => fetchGreeting()}>Hello World</button>  */}
-    <Track></Track>
+    <Router></Router>
   </ApolloProvider>
 );
 
-// async function fetchGreeting() {
-//     const response = await fetch(GRAPHQL_URL, {
-//         method: 'POST',
-//         headers: {
-//             'content-type': 'application/json'
-//         },
-//         body: JSON.stringify({
-//             query: `
-//             query {
-//                 books {
-//                     title
-//                 }
-//                 authors {
-//                     name
-//                 }
-//             }`
-//         })
-//     });
+function Router() {
+  const [page, setPage] = useState('/');
+  const [configuration, setConfiguration] = useState('/');
+  const [isPending, startTransition] = useTransition();
 
-//     const responseBody = await response.json();
-//     console.log(responseBody);
-// }
+  function navigate(url, configuration) {
+    startTransition(() => {
+      console.log('::: conf', configuration);
+      setPage(url);
+      setConfiguration(configuration);
+    });
+  }
+
+  if (page === '/') {
+    return <Track navigate={navigate}></Track>;
+  } else if (page === 'track-card-detail') {
+    return (
+      <TrackCardDetail
+        navigate={navigate}
+        trackId={configuration.id}
+      ></TrackCardDetail>
+    );
+  }
+}

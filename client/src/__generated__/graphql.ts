@@ -22,17 +22,33 @@ export type Author = {
   photo?: Maybe<Scalars['String']['output']>;
 };
 
+export type Module = {
+  __typename?: 'Module';
+  id: Scalars['ID']['output'];
+  length?: Maybe<Scalars['Int']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type Query = {
   __typename?: 'Query';
+  track?: Maybe<Track>;
   tracksForHome: Array<Track>;
+};
+
+
+export type QueryTrackArgs = {
+  id: Scalars['ID']['input'];
 };
 
 export type Track = {
   __typename?: 'Track';
   author: Author;
+  description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
   length?: Maybe<Scalars['Int']['output']>;
+  modules: Array<Module>;
   modulesCount?: Maybe<Scalars['Int']['output']>;
+  numberofViews?: Maybe<Scalars['Int']['output']>;
   thumbnail?: Maybe<Scalars['String']['output']>;
   title: Scalars['String']['output'];
 };

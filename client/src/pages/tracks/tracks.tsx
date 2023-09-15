@@ -23,13 +23,12 @@ import { Track } from '../../__generated__/graphql';
 //   }
 // }
 
-export default function Track() {
+export default function Track(props: {
+  navigate: (url: string, configuration?: Object) => any;
+}) {
   const { loading, error, data } = useQuery(trackQuery());
   if (loading) return 'Loading...';
   if (error) return `Error! ${error.message}`;
-  console.log('::: loading', loading);
-  console.log('::: error', error);
-  console.log('::: data', data);
 
   if (loading) {
     return 'Loading...';
@@ -42,7 +41,7 @@ export default function Track() {
   return (
     <section className="track-wrapper">
       {data?.tracksForHome?.map((d: Track) => (
-        <TrackCard key={d?.id} track={d}></TrackCard>
+        <TrackCard key={d?.id} track={d} navigate={props.navigate}></TrackCard>
       ))}{' '}
     </section>
   );

@@ -5,6 +5,14 @@ export type TrackModel = {
   thumbnail: string;
   length: number;
   modulesCount: number;
+  description: string;
+  numberofViews: number;
+};
+
+export type ModuleModel = {
+  is: string;
+  title: string;
+  length: number;
 };
 
 export type AuthorModel = {

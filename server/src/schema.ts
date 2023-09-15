@@ -9,6 +9,15 @@ export const typeDefs = gql`
     author: Author!
     length: Int
     modulesCount: Int
+    description: String
+    numberofViews: Int
+    modules: [Module!]!
+  }
+
+  type Module {
+    id: ID!
+    title: String
+    length: Int
   }
 
   type Author {
@@ -19,5 +28,6 @@ export const typeDefs = gql`
 
   type Query {
     tracksForHome: [Track!]!
+    track(id: ID!): Track
   }
 `;
